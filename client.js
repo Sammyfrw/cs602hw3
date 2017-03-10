@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const credentials = require("./credentials.js");
 
 //DB connection
-const dbURL = 'mongodb://' + credentials.host + ':27017' + credentials.database;
+const dbUrl = 'mongodb://' + credentials.host + ':27017/' + credentials.database;
 const connection = mongoose.createConnection(dbUrl);
 
 //Clientside model setup
-const employeeDb = require('./employeeDb.js');
+const employeeDb = require('./routes/dbConnection.js');
 const Employee = employeeDb.getModel(connection);
 
 connection.on ("open", () => {
@@ -30,8 +30,15 @@ connection.on ("open", () => {
     lastName: 'Doe'
   });
   employee.save((err) => {
-    connection.close();
     if (err) throw err;
     console.log("Successfully added employees!");
   });
+
+  Employee.find({}, 'firstName lastName',
+    (err, results) => {
+      connection.close();
+      if (err) throw err;
+      console.log(results);
+    }
+  );
 });

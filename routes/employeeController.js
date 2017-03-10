@@ -27,8 +27,8 @@ var addEmployee = (req, res, next) => {
 //Create employee
 var createEmployee = (req, res, next) => {
   let employee = new Employee({
-    employeeFirstName: req.body.fname;
-    employeeLastName: req.body.lname;
+    employeeFirstName: req.body.fname,
+    employeeLastName: req.body.lname
   });
 
   employee.save((err) => {
@@ -60,7 +60,6 @@ var updateEmployee = (req, res, next) => {
   Employee.findById(id, (err, employee) => {
     if(err) console.log("Cannot find employee: %s ", err);
     if(!employee) return res.sender('404');
-
     employee.firstName = req.body.fname;
     employee.lastName = req.body.lname;
 

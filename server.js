@@ -6,7 +6,7 @@ const handlebars = require('express-handlebars');
 const app = express();
 
 //Handlebar engine setup
-app.engine('handlebars', handelbars({defaultLayout: 'BMWorker'}));
+app.engine('handlebars', handlebars({defaultLayout: 'BMWorker'}));
 app.set('view engine', 'handlebars');
 
 //Static resources
