@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
+const employeeController = require("./employeeController");
+
 //Set up controller routes
-const employeeModule = require("./employeeModule");
-const showEmployees = employeeModule.showEmployees;
-const addEmployee = employeeModule.addEmployee;
-const saveEmployee = employeeModule.saveEmployee;
-const editEmployee = employeeModule.editEmployee;
-const updateEmployee = employeeModule.updateEmployee;
-const deleteEmployee = employeeModule.deleteEmployee;
+const showEmployees = employeeController.showEmployees;
+const addEmployee = employeeController.addEmployee;
+const saveEmployee = employeeController.saveEmployee;
+const editEmployee = employeeController.editEmployee;
+const updateEmployee = employeeController.updateEmployee;
+const deleteEmployee = employeeController.deleteEmployee;
 
 //Route specifications
 router.get('.' (req, res, next) => {

@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const credentials = require("./credentials.js");
 
-//DB setup
+//DB connection
 const dbURL = 'mongodb://' + credentials.host + ':27017' + credentials.database;
 const connection = mongoose.createConnection(dbUrl);
 

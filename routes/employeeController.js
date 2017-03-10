@@ -3,7 +3,7 @@ const Employee = DB.getModel();
 
 //Controller function definition
 //Show employee
-module.exports.showEmployees = (req, res, next) => {
+var showEmployees = (req, res, next) => {
   Employee.find({}, (err, employees) => {
     if(err) console.log("Error encountered: %s", err);
 
@@ -20,12 +20,12 @@ module.exports.showEmployees = (req, res, next) => {
 };
 
 //Add employee
-module.exports.addEmployee = (req, res, next) => {
+var addEmployee = (req, res, next) => {
   res.render('addEmployeeView', {title: 'Add employee'});
 };
 
 //Create employee
-module.exports.createEmployee = (req, res, next) => {
+var createEmployee = (req, res, next) => {
   let employee = new Employee({
     employeeFirstName: req.body.fname;
     employeeLastName: req.body.lname;
@@ -38,7 +38,7 @@ module.exports.createEmployee = (req, res, next) => {
 };
 
 //Edit employee
-module.exports.editEmployee = (req, res, next) => {
+var editEmployee = (req, res, next) => {
   let id = req.params.id;
 
   Employee.findById(id, (err, employee) => {
@@ -54,7 +54,7 @@ module.exports.editEmployee = (req, res, next) => {
 };
 
 //Update employee
-module.exports.updateEmployee = (req, res, next) => {
+var updateEmployee = (req, res, next) => {
   let id = req.params.id;
 
   Employee.findById(id, (err, employee) => {
@@ -72,7 +72,7 @@ module.exports.updateEmployee = (req, res, next) => {
 };
 
 //Delete employee
-module.exports.deleteEmployee = (req, res, next) => {
+var deleteEmployee = (req, res, next) => {
   let id = req.params.id;
 
   Employee.findById(id, (err, employee) => {
@@ -85,3 +85,12 @@ module.exports.deleteEmployee = (req, res, next) => {
     });
   });
 };
+
+module.exports = {
+  showEmployees,
+  addEmployee,
+  createEmployee,
+  editEmployee,
+  updateEmployee,
+  deleteEmployee
+}
