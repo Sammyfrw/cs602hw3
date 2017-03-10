@@ -1,3 +1,4 @@
+//Model and schema setup
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -8,6 +9,7 @@ const employeeSchema = new Schema({
   lastName: String
 });
 
+//Exporting module
 module.exports = {
   getModel: (connection) => {
     return connection.model("EmployeeModel",
