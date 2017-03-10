@@ -4,7 +4,7 @@ const router = express.Router();
 const employeeController = require("./employeeController");
 
 //Set up controller routes
-const showEmployees = employeeController.showEmployees;
+const listEmployees = employeeController.listEmployees;
 const addEmployee = employeeController.addEmployee;
 const createEmployee = employeeController.createEmployee;
 const editEmployee = employeeController.editEmployee;
@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
   res.redirect('/employees');
 });
 
-router.get('/employees', showEmployees);
+router.get('/employees', listEmployees);
 router.get('/employees/add', addEmployee);
 router.post('/employees/add', createEmployee);
 router.get('/employees/edit/:id', editEmployee);

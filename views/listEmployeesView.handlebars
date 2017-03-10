@@ -1,0 +1,12 @@
+<h1>Employees</h1>
+<table>
+  {{#each data}}
+  <tr>
+    <td>{{this.firstName}} {{this.lastName}}</td>
+    <td>
+      <a href="/employees/edit/{{this.id}}">Edit</a>
+      <a href="/employees/delete/{{this.id}}">Delete</a>
+    </td>
+  </tr>
+  {{/each}}
+</table>

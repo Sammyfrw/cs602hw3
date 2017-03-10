@@ -3,32 +3,32 @@ const Employee = DB.getModel();
 
 //Controller function definition
 //Show employee
-var showEmployees = (req, res, next) => {
+var listEmployees = (req, res, next) => {
   Employee.find({}, (err, employees) => {
     if(err) console.log("Error encountered: %s", err);
 
     let results = employees.map( (employee) => {
       return {
         id: employee._id,
-        employeeFirstName: employee.firstName,
-        employeeLastName: employee.lastName
+        firstName: employee.firstName,
+        lastName: employee.lastName
       }
     });
 
-    res.render('showEmployeesView', {title: 'List of employees', data: results});
+    res.render('listEmployeesView', {data: results});
   });
 };
 
 //Add employee
 var addEmployee = (req, res, next) => {
-  res.render('addEmployeeView', {title: 'Add employee'});
+  res.render('addEmployeeView', {});
 };
 
 //Create employee
 var createEmployee = (req, res, next) => {
   let employee = new Employee({
-    employeeFirstName: req.body.fname,
-    employeeLastName: req.body.lname
+    firstName: req.body.fname,
+    lastName: req.body.lname
   });
 
   employee.save((err) => {
@@ -45,10 +45,9 @@ var editEmployee = (req, res, next) => {
     if(err) console.log("Cannot find employee: %s ", err);
     if(!employee) return res.render('404');
 
-    res.render('editEmployeeView', {title:"Edit Employee",
-      data: {id: employee._id,
-              employeeFirstName: employee.firstName,
-              employeeLastName: employee.lastName}
+    res.render('editEmployeeView', {data: {id: employee._id,
+              firstName: employee.firstName,
+              lastName: employee.lastName}
             });
   });
 };
@@ -86,7 +85,7 @@ var deleteEmployee = (req, res, next) => {
 };
 
 module.exports = {
-  showEmployees,
+  listEmployees,
   addEmployee,
   createEmployee,
   editEmployee,
