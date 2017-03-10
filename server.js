@@ -19,3 +19,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 //Route setup
 var routes = require('./routes/index');
 app.use('/', routes);
+
+
+app.use((req,res) => {
+  res.status(404)
+  res.render('404');
+});
+
+app.listen(3000, () => {
+  console.log('http://localhost:3000');
+});
