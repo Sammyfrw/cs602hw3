@@ -1,4 +1,4 @@
 module.exports = {
   host: "localhost",
-  database: 'cs602mongodb_hw3'
+  database: 'rachman_cs602_hw3'
 }

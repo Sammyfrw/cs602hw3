@@ -1,8 +1,10 @@
+//Module definition and setup
 const DB = require('./dbConnection.js');
 const Employee = DB.getModel();
 
 //Controller function definition
-//Show employee
+
+//List employees
 var listEmployees = (req, res, next) => {
   Employee.find({}, (err, employees) => {
     if(err) console.log("Error encountered: %s", err);
@@ -84,6 +86,7 @@ var deleteEmployee = (req, res, next) => {
   });
 };
 
+//Exporting functions
 module.exports = {
   listEmployees,
   addEmployee,

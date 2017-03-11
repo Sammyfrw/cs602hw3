@@ -1,3 +1,4 @@
+//Script to be run to initialize and prepopulate database
 //Module definitions
 const mongoose = require('mongoose');
 const credentials = require("./credentials.js");
@@ -10,6 +11,7 @@ const connection = mongoose.createConnection(dbUrl);
 const employeeDb = require('./routes/dbConnection.js');
 const Employee = employeeDb.getModel(connection);
 
+//Prepopulating database
 connection.on ("open", () => {
   let employee;
 
@@ -32,13 +34,13 @@ connection.on ("open", () => {
   employee.save((err) => {
     if (err) throw err;
     console.log("Successfully added employees!");
+    //Display added employees
+    Employee.find({}, 'firstName lastName',
+      (err, results) => {
+        connection.close();
+        if (err) throw err;
+        console.log(results);
+      }
+    );
   });
-
-  Employee.find({}, 'firstName lastName',
-    (err, results) => {
-      connection.close();
-      if (err) throw err;
-      console.log(results);
-    }
-  );
 });
